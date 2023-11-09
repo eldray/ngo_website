@@ -1,38 +1,97 @@
-.App {
-  text-align: center;
+.nav-link {
+  color: #28a745; 
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-right: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.nav-link:hover {
+  background: #28a745; 
+  font-weight: bold;
+  color: white  ;
+  border-radius: 5px;
+  padding: 5px;
+  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.btn-primary{
+  background: #01013e; 
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
   color: white;
+  font-weight: bold;
+  margin-left: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.mission-box:hover, .vision-box:hover {
+  background-color: green;
+  transition: background-color 0.3s ease;
+  color: #fff;
+}
+.mission-box, .vision-box {
+  background-color: #01013e;
+  color: #00BFFF;
+}
+.overview-box:hover {
+  color: green;
+  transition: background-color 0.3s ease;
+  background-color: #fff;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.overview-box{
+  color: #01013e;
+  background-color: #00BFFF;
+}
+
+.btn-primary:hover{
+  background: green;
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.footsearch{
+  background:  #01013e;
+  padding: 5px;
+}
+
+.footer-bg{
+  background:  #01013e;
+}
+.footer-bg h4{
+  color: #00BFFF;
+}
+
+.footer-bg p{
+  color: #fff;
+}
+
+.copy li{
+  color: #fff; 
+}
+
+
+.social-icons a{
+  margin-right: 10px;
+  color: #00BFFF;
+}
+
+.social-icons a:hover{
+border-bottom: 2px solid #fff;
+
+}
+
+.menu-footer{
+  font-size: 20px;
+}
+
+.menu-footer li:hover{
+  color: #00BFFF;
+  font-size: 20px;
+  text-decoration: underline;
 }

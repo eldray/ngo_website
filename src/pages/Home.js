@@ -9,6 +9,7 @@ import Carousel from '../components/Carousel';
 
 import image from '../components/images/image1.jpg';
 import image2 from '../components/images/image2.jpg';
+import DonationForm from '../components/DonationForm';
 
 const Home = () => {
   const fadeIn = useSpring({ opacity: 1, from: { opacity: 0 } });
@@ -80,7 +81,7 @@ const Home = () => {
               </div>
               <div className="col-md-4 mb-4">
                 <div className="card">
-                  <img src={image} className="card-img-top" alt="Event 2" />
+                  <img src={image2} className="card-img-top" alt="Event 2" />
                   <div className="card-body">
                     <h5 className="card-title">Event Title 2</h5>
                     <p className="card-text">Some information about Event 2.</p>
@@ -103,24 +104,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Contact Form */}
-        <div className="row mt-5 mb-4">
-          <div className="col-md-6 mx-auto">
-            <h2>Contact Us</h2>
-            <form>
-              <div className="mb-3">
-                <input type="text" className="form-control" placeholder="Name" />
-              </div>
-              <div className="mb-3">
-                <input type="email" className="form-control" placeholder="Email" />
-              </div>
-              <div className="mb-3">
-                <textarea className="form-control" rows="4" placeholder="Message"></textarea>
-              </div>
-              <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
-          </div>
-        </div>
+        <DonationForm/>
 
 
       </div>

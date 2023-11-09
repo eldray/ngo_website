@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'; 
+import donations from '../components/images/donations.jpg';
 
 const DonationForm = () => {
   const [momoAmount, setMomoAmount] = useState('');
@@ -29,7 +30,8 @@ const DonationForm = () => {
   }
 
   return (
-    <div className="donation-form container">
+    <div className="donation-form container mb-4">
+      <img src={donations} height={200} width={900} alt='Donations' className="mx-4"/>
       <div className="row mb-4">
         <div className="col-md-6">
           <h2>MTN MoMo Donation</h2>
@@ -94,7 +96,7 @@ const DonationForm = () => {
       </div>
       <div className="row">
         <div className="col-md-6">
-          <h2>Bank Details</h2>
+          <h2>Bank Donation</h2>
           <form onSubmit={handleBankSubmit}>
             <div className="form-group">
               <label htmlFor="bankAccount">Account Name</label>

@@ -11,6 +11,9 @@ import SermonDetail from './pages/SermonDetail';
 import Contact from './components/Contact';
 import DonationForm from './components/DonationForm';
 
+import './App.css'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const App = () => {
   return (
     <Router>
@@ -23,7 +26,7 @@ const App = () => {
         <Route path="/events/:id" element={<EventDetails />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/donationform" element={<DonationForm />} />
-        <Route path="/sermons/:id" component={<SermonDetail/>} />
+        <Route path="/sermons/:id" element={<SermonDetail />} />
       </Routes>
       <Footer />
     </Router>

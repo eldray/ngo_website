@@ -10,6 +10,7 @@ const SermonDetail = () => {
       .then(response => response.json())
       .then(data => setSermon(data))
       .catch(error => console.error('Error:', error));
+      console.log(id)
   }, [id]);
 
   if (!sermon) {
@@ -17,11 +18,11 @@ const SermonDetail = () => {
   }
 
   return (
-    <div>
-      <h2>{sermon.title}</h2>
-      <p>Sermon ID: {id}</p>
-      <p>{sermon.content}</p>
-    </div>
+    <>
+      <h2 style={{ color: 'green', fontWeight: 'bold' }}>{sermon.title}</h2>
+      <p style={{ color: 'blue', fontWeight: 'bold' }}>Sermon ID: {id}</p>
+      <p style={{ color: 'black', fontWeight: 'bold' }}>{sermon.content}</p>
+    </>
   );
 }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const Ministries = () => {
   const videoList = [
     {
@@ -71,12 +72,13 @@ const Ministries = () => {
     <div className="container mt-5">
 
       <div className="row text-center">
+        <h2 className="mt-4 mb-4">Videos</h2>
         {videoList.map(video => (
           <div className="col-md-4 mb-4" key={video.id}>
             <iframe
               title={video.title}
               width="100%"
-              height="200"
+              height="220"
               src={video.videoUrl}
               allowFullScreen
             ></iframe>
@@ -86,6 +88,7 @@ const Ministries = () => {
       </div>
 
       <div className="row text-center">
+        <h2 className="mt-4 mb-4">Sermons</h2>
         {blogSermons.map(sermon => (
           <div className="col-md-4 mb-4" key={sermon.id}>
             <div className="card">

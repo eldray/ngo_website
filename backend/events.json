@@ -1,0 +1,27 @@
+[
+    {
+      "id": 1,
+      "title": "Event 1",
+      "date": "2023-11-10",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam."
+    },
+    {
+      "id": 2,
+      "title": "Event 2",
+      "date": "2023-11-15",
+      "description": "Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa."
+    },
+    {
+      "id": 3,
+      "title": "Event 1",
+      "date": "2023-11-10",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam."
+    },
+    {
+      "id": 4,
+      "title": "Event 2",
+      "date": "2023-11-15",
+      "description": "Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa."
+    }
+  ]
+  

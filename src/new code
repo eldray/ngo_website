@@ -1,0 +1,319 @@
+I apologize for that. Let's add the logic and backend code for processing donations using MTN MoMo, PayPal, and Bank Transfer in your `server.js` file.
+
+```javascript
+// Add this import at the top of your server.js file
+const axios = require('axios');
+
+// ... (previous code)
+
+// MTN MoMo donation form submission
+app.post('/momo-donate', async (req, res) => {
+  const { amount, number } = req.body;
+
+  try {
+    const response = await axios.post(
+      'https://sandbox.momodeveloper.mtn.com/collection/v1_0/requesttopay',
+      {
+        amount: amount,
+        currency: 'USD',
+        externalId: '123456789', // Replace with your unique identifier for the donation
+        payer: {
+          partyIdType: 'MSISDN',
+          partyId: number // Replace with the payer's phone number
+        },
+        payerMessage: 'Donation for a charitable cause',
+        payeeNote: 'Thank you for your donation!'
+      },
+      {
+        headers: {
+          'Authorization': 'Bearer YOUR_API_KEY', // Replace with your actual API key
+          'X-Target-Environment': 'sandbox' // Use 'sandbox' for testing, 'production' for live
+        }
+      }
+    );
+
+    res.json({ success: true, response: response.data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// PayPal donation form submission
+app.post('/paypal-donate', async (req, res) => {
+  const { amount, account } = req.body;
+
+  try {
+    // You can implement PayPal donation logic here
+    // Example: Make API request to PayPal payment gateway
+    // ...
+    res.json({ success: true, message: 'Donation submitted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Bank transfer form submission
+app.post('/bank-donate', async (req, res) => {
+  const { accountName, accountNumber, amount } = req.body;
+
+  try {
+    // You can implement bank transfer donation logic here
+    // Example: Save bank details to database
+    // ...
+    res.json({ success: true, message: 'Donation submitted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// ... (rest of your server.js code)
+```
+
+In this code:
+
+- I've added three new POST routes (`/momo-donate`, `/paypal-donate`, `/bank-donate`) to handle form submissions for MTN MoMo, PayPal, and Bank Transfer donations.
+- Each route receives the necessary form data (amount, number/account, etc.) from the request body.
+- Inside each route, you can implement the specific donation processing logic. For MTN MoMo, it makes an API request to the MTN MoMo API (you'll need to replace placeholders with your actual credentials). For PayPal and Bank Transfer, you can implement the respective donation processing logic as needed.
+
+Remember to replace the placeholders (YOUR_API_KEY, etc.) with your actual API credentials and implement the respective donation processing logic in each route.
+
+
+
+
+
+--------------
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'; 
+
+const DonationForm = () => {
+  const [showMomoForm, setShowMomoForm] = useState(false);
+  const [showPaypalForm, setShowPaypalForm] = useState(false);
+  const [showBankForm, setShowBankForm] = useState(false);
+
+  const handleMomoSubmit = async (e) => {
+    e.preventDefault();
+    // Handle MTN MoMo submission logic here
+    console.log('MTN MoMo Donation submitted');
+  }
+
+  const handlePaypalSubmit = async (e) => {
+    e.preventDefault();
+    // Handle PayPal submission logic here
+    console.log('PayPal Donation submitted');
+  }
+
+  const handleBankSubmit = async (e) => {
+    e.preventDefault();
+    // Handle Bank details submission logic here
+    console.log('Bank Details submitted');
+  }
+
+  return (
+    <div className="donation-form container">
+      <div className="row mb-4">
+        <div className="col-md-4 text-center">
+          <button className="btn btn-primary" onClick={() => setShowMomoForm(true)}>
+            <i className="bi bi-wallet mr-2"></i> Donate with MTN MoMo
+          </button>
+        </div>
+        <div className="col-md-4 text-center">
+          <button className="btn btn-primary" onClick={() => setShowPaypalForm(true)}>
+            <i className="bi bi-paypal mr-2"></i> Donate with PayPal
+          </button>
+        </div>
+        <div className="col-md-4 text-center">
+          <button className="btn btn-primary" onClick={() => setShowBankForm(true)}>
+            <i className="bi bi-bank mr-2"></i> Donate via Bank Transfer
+          </button>
+        </div>
+      </div>
+
+      {showMomoForm && (
+        <div className="row mb-4">
+          <div className="col-md-6 offset-md-3">
+            <h2>MTN MoMo Donation</h2>
+            <form onSubmit={handleMomoSubmit}>
+              {/* ... (input fields for MoMo form) */}
+              <button type="submit" className="btn btn-primary">
+                <i className="bi bi-wallet mr-2"></i> Pay with MTN MoMo
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {showPaypalForm && (
+        <div className="row mb-4">
+          <div className="col-md-6 offset-md-3">
+            <h2>PayPal Donation</h2>
+            <form onSubmit={handlePaypalSubmit}>
+              {/* ... (input fields for PayPal form) */}
+              <button type="submit" className="btn btn-primary">
+                <i className="bi bi-paypal mr-2"></i> Pay with PayPal
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {showBankForm && (
+        <div className="row mb-4">
+          <div className="col-md-6 offset-md-3">
+            <h2>Bank Details</h2>
+            <form onSubmit={handleBankSubmit}>
+              {/* ... (input fields for Bank form) */}
+              <button type="submit" className="btn btn-primary">
+                <i className="bi bi-bank mr-2"></i> Donate via Bank Transfer
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default DonationForm;
+
+
+
+
+
+---------------
+
+
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css'; 
+
+const DonationForm = () => {
+  const [momoAmount, setMomoAmount] = useState('');
+  const [momoNumber, setMomoNumber] = useState('');
+  const [paypalAmount, setPaypalAmount] = useState('');
+  const [paypalAccount, setPaypalAccount] = useState('');
+  const [bankAccount, setBankAccount] = useState('');
+  const [bankAmount, setBankAmount] = useState('');
+
+  const handleMomoSubmit = async (e) => {
+    e.preventDefault();
+    // Handle MTN MoMo submission logic here
+    console.log('MTN MoMo Donation submitted:', momoAmount, momoNumber);
+  }
+
+  const handlePaypalSubmit = async (e) => {
+    e.preventDefault();
+    // Handle PayPal submission logic here
+    console.log('PayPal Donation submitted:', paypalAmount, paypalAccount);
+  }
+
+  const handleBankSubmit = async (e) => {
+    e.preventDefault();
+    // Handle Bank details submission logic here
+    console.log('Bank Details submitted:', bankAccount, bankAmount);
+  }
+
+  return (
+    <div className="donation-form container">
+      <div className="row mb-4">
+        <div className="col-md-6">
+          <h2>MTN MoMo Donation</h2>
+          <form onSubmit={handleMomoSubmit}>
+            <div className="form-group">
+              <label htmlFor="momoAmount">Amount (USD)</label>
+              <input
+                type="number"
+                value={momoAmount}
+                onChange={(e) => setMomoAmount(e.target.value)}
+                className="form-control"
+                id="momoAmount"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="momoNumber">Mobile Money Number</label>
+              <input
+                type="tel"
+                value={momoNumber}
+                onChange={(e) => setMomoNumber(e.target.value)}
+                className="form-control"
+                id="momoNumber"
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-primary">
+              <i className="bi bi-wallet mr-2"></i> Pay with MTN MoMo
+            </button>
+          </form>
+        </div>
+        <div className="col-md-6">
+          <h2>PayPal Donation</h2>
+          <form onSubmit={handlePaypalSubmit}>
+            <div className="form-group">
+              <label htmlFor="paypalAmount">Amount (USD)</label>
+              <input
+                type="number"
+                value={paypalAmount}
+                onChange={(e) => setPaypalAmount(e.target.value)}
+                className="form-control"
+                id="paypalAmount"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="paypalAccount">PayPal Account</label>
+              <input
+                type="text"
+                value={paypalAccount}
+                onChange={(e) => setPaypalAccount(e.target.value)}
+                className="form-control"
+                id="paypalAccount"
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-primary">
+              <i className="bi bi-paypal mr-2"></i> Pay with PayPal
+            </button>
+          </form>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-md-6">
+          <h2>Bank Details</h2>
+          <form onSubmit={handleBankSubmit}>
+            <div className="form-group">
+              <label htmlFor="bankAccount">Account Name</label>
+              <input
+                type="text"
+                value={bankAccount}
+                onChange={(e) => setBankAccount(e.target.value)}
+                className="form-control"
+                id="bankAccount"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="bankAmount">Amount (USD)</label>
+              <input
+                type="number"
+                value={bankAmount}
+                onChange={(e) => setBankAmount(e.target.value)}
+                className="form-control"
+                id="bankAmount"
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-primary">
+              <i className="bi bi-bank mr-2"></i> Donate via Bank Transfer
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default DonationForm;

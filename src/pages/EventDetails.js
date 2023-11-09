@@ -17,17 +17,19 @@ const EventDetails = () => {
   }
 
   return (
-    <div className='flex'>
-      <div>
-      <img src={event.image} className="img-fluid" 
-      alt={event.title} />
+    <>
+      <div className="flex text-center">
+        <div className="mx-auto">
+          <img src={event.image} className="img-fluid" alt={event.title} />
+        </div>
+        <div>
+          <h2 style={{ color: 'green', fontWeight: 'bold' }}>{event.title}</h2>
+          <p style={{ color: 'blue', fontWeight: 'bold' }}>Date: {event.date}</p>
+          <p style={{ color: 'black', fontWeight: 'bold' }}>{event.description}</p>
+        </div>
       </div>
-      <h2>{event.title}</h2>
-      <p>Event ID: {id}</p>
-      <p>Date: {event.date}</p>
-      <p>{event.description}</p>
-    </div>
+    </>
   );
-}
+};
 
 export default EventDetails;

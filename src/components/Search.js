@@ -25,9 +25,9 @@ const Search = () => {
   }
 
   return (
-    <div className="container mt-5">
-      <div className="row mb-4">
-        <div className="col-md-6 mx-auto text-center flex">
+    <div className="">
+      <div className="row mb-4 footsearch">
+        <div className="col-md-6 mx-auto text-center d-flex justify-content-between">
           <input
             type="text"
             className="form-control"
@@ -35,9 +35,11 @@ const Search = () => {
             value={searchQuery}
             onChange={handleInputChange}
           />
-          <button className="btn btn-primary mt-2" onClick={handleSearch}>
+          <div className="me-3">
+            <button className="btn btn-primary mt-2" onClick={handleSearch}>
             Search
-          </button>
+            </button>
+          </div>
         </div>
       </div>
 

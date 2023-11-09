@@ -4,7 +4,7 @@ const SearchResults = ({ searchResults }) => {
   return (
     <div className="row">
       <div className="col-md-12">
-        {searchResults.length > 0 ? (
+        {searchResults.length > 0 && (
           <div>
             <h2>Search Results</h2>
             <ul>
@@ -13,8 +13,6 @@ const SearchResults = ({ searchResults }) => {
               ))}
             </ul>
           </div>
-        ) : (
-          <h2>No Results Found</h2>
         )}
       </div>
     </div>

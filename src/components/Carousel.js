@@ -1,9 +1,9 @@
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure you have this import
 
-import Image1 from './images/image1.jpg';
-import Image2 from './images/image2.jpg';
-import Image3 from './images/image3.jpg';
+import Image1 from './images/post1.jpg';
+import Image2 from './images/post2.jpg';
+import Image3 from './images/postwater.jpg';
 
 function MyCarousel() {
   return (

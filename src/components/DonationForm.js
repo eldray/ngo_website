@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css'; 
 import donations from '../components/images/donations.jpg';
+
 
 const DonationForm = () => {
   const [momoAmount, setMomoAmount] = useState('');
@@ -13,25 +15,64 @@ const DonationForm = () => {
 
   const handleMomoSubmit = async (e) => {
     e.preventDefault();
-    // Handle MTN MoMo submission logic here
-    console.log('MTN MoMo Donation submitted:', momoAmount, momoNumber);
-  }
+
+    try {
+      const response = await axios.post('http://localhost:5000/donate', {
+        amount: momoAmount,
+      });
+
+      if (response.data.success) {
+        console.log('MTN MoMo Donation submitted successfully:', momoAmount, momoNumber);
+      } else {
+        console.error('MTN MoMo Donation failed:', response.data.error);
+      }
+    } catch (error) {
+      console.error('Error submitting MTN MoMo Donation:', error.message);
+    }
+  };
 
   const handlePaypalSubmit = async (e) => {
     e.preventDefault();
-    // Handle PayPal submission logic here
-    console.log('PayPal Donation submitted:', paypalAmount, paypalAccount);
-  }
+
+    try {
+      const response = await axios.post('http://localhost:5000/paypal-donate', {
+        amount: paypalAmount,
+        account: paypalAccount,
+      });
+
+      if (response.data.success) {
+        console.log('PayPal Donation submitted successfully:', paypalAmount, paypalAccount);
+      } else {
+        console.error('PayPal Donation failed:', response.data.error);
+      }
+    } catch (error) {
+      console.error('Error submitting PayPal Donation:', error.message);
+    }
+  };
 
   const handleBankSubmit = async (e) => {
     e.preventDefault();
-    // Handle Bank details submission logic here
-    console.log('Bank Details submitted:', bankAccount, bankAmount);
-  }
+
+    try {
+      const response = await axios.post('http://localhost:5000/bank-donate', {
+        accountName: bankAccount,
+        accountNumber: bankAmount,
+        amount: bankAmount,
+      });
+
+      if (response.data.success) {
+        console.log('Bank Details submitted successfully:', bankAccount, bankAmount);
+      } else {
+        console.error('Bank Details submission failed:', response.data.error);
+      }
+    } catch (error) {
+      console.error('Error submitting Bank Details:', error.message);
+    }
+  };
 
   return (
     <div className="donation-form container mb-4">
-      <img src={donations} height={200} width={900} alt='Donations' className="mx-4"/>
+      <img src={donations} height={200} width={900} alt='Donations' className="mx-4 image-fluid"/>
       <div className="row mb-4">
         <div className="col-md-6">
           <h2>MTN MoMo Donation</h2>

@@ -47,39 +47,6 @@ app.get('/search', (req, res) => {
   res.json({ results });
 });
 
-// donation form
-app.post('/donate', async (req, res) => {
-  const { amount } = req.body;
-
-  try {
-    const response = await axios.post(
-      'https://sandbox.momodeveloper.mtn.com/collection/v1_0/requesttopay',
-      {
-        amount: amount,
-        currency: 'EUR',
-        externalId: '123456789',
-        payer: {
-          partyIdType: 'MSISDN',
-          partyId: '46733123450'
-        },
-        payerMessage: 'Donation for a charitable cause',
-        payeeNote: 'Thank you for your donation!'
-      },
-      {
-        headers: {
-          'Authorization': 'Bearer YOUR_API_KEY',
-          'X-Target-Environment': 'sandbox'
-        }
-      }
-    );
-
-    res.json({ success: true, response: response.data });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
-
 // Handle contact form submission
 app.post('/contact', (req, res) => {
   const { name, email, message } = req.body;
@@ -91,4 +58,75 @@ app.post('/contact', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+});
+
+
+// MTN MoMo donation form submission
+app.post('/donate', async (req, res) => {
+  const { amount } = req.body;
+
+  try {
+    const response = await axios.post(
+      ' https://sandbox.momodeveloper.mtn.com/collection/v1_0/bc-authorize',
+      {
+        amount: amount,
+        currency: 'EUR',
+        externalId: '',
+        payer: {
+          partyIdType: 'MSISDN',
+          partyId: '0249633336'
+        },
+        payerMessage: 'Donation for a charitable cause',
+        payeeNote: 'Thank you for your donation!'
+      },
+      {
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+          'Ocp-Apim-Subscription-Key': '215c40c671164508bb111b95f296902c', // Replace with your actual subscription key
+          'X-Target-Environment': 'sandbox',
+          'User-Agent': 'axios/1.6.0',
+          'Content-Length': '206',
+          'Accept-Encoding': 'gzip, compress, deflate, br'
+        }
+      } 
+    );
+
+    res.json({ success: true, response: response.data });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+
+
+// PayPal donation form submission
+app.post('/paypal-donate', async (req, res) => {
+  const { amount, account } = req.body;
+
+  try {
+    // You can implement PayPal donation logic here
+    // Example: Make API request to PayPal payment gateway
+    // ...
+    res.json({ success: true, message: 'Donation submitted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Bank transfer form submission
+app.post('/bank-donate', async (req, res) => {
+  const { accountName, accountNumber, amount } = req.body;
+
+  try {
+    // You can implement bank transfer donation logic here
+    // Example: Save bank details to database
+    // ...
+    res.json({ success: true, message: 'Donation submitted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: error.message });
+  }
 });

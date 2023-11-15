@@ -45,7 +45,7 @@ const Footer = () => {
               <li>Hotlines :
                 +233 593 830 400 | +233 556 490 029</li>
               <li>Address: P.O.Box 1934 Adum-Kumasi</li>
-              <li>Email: info@hospital.com</li>
+              <li>Email: info@philadelphialifemins.com</li>
             </ul>
           </div>
 

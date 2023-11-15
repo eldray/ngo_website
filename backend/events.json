@@ -3,6 +3,7 @@
       "id": 1,
       "title": "Event 1",
       "date": "2023-11-10",
+      "image": "./images/banner.jpg",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam."
     },
     {

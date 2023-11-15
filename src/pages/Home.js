@@ -10,6 +10,7 @@ import Carousel from '../components/Carousel';
 import image from '../components/images/image1.jpg';
 import image2 from '../components/images/image2.jpg';
 import DonationForm from '../components/DonationForm';
+import Donate from '../components/Donate';
 
 const Home = () => {
   const fadeIn = useSpring({ opacity: 1, from: { opacity: 0 } });
@@ -104,7 +105,7 @@ const Home = () => {
           </div>
         </div>
 
-        <DonationForm/>
+        <Donate/>
 
 
       </div>
